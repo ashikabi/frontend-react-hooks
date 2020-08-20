@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from './components/searchBar/SearchBar'
+import CharacterContextProvider from './context/CharacterContext';
+import ComicContextProvider from './context/ComicContext';
+import SerieContextProvider from './context/SerieContext';
+import CardList from './components/cardList/CardList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CharacterContextProvider>
+        <ComicContextProvider>
+          <SerieContextProvider>
+              <SearchBar />
+              <CardList />
+          </SerieContextProvider>
+        </ComicContextProvider>
+      </CharacterContextProvider>
     </div>
   );
 }
