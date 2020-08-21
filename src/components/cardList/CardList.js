@@ -3,6 +3,7 @@ import { CharacterContext } from "../../context/CharacterContext"
 import { ComicContext } from "../../context/ComicContext"
 import { SerieContext } from "../../context/SerieContext"
 import CustomCard from "../customCard/CustomCard";
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 const _showList= (characters) =>{
   let result = [];
@@ -54,6 +55,7 @@ const CardList = () => {
   let { characters } = useContext(CharacterContext);
   let { comics } = useContext(ComicContext);
   let { series } = useContext(SerieContext);
+  let { favorites } = useContext(FavoriteContext);
   characters = characters[0];
   comics = comics[0];
   series = series[0];  
@@ -68,14 +70,17 @@ const CardList = () => {
           :null
       }
       {
-        comics && comics.length>0? 
-          <p>Currently you have {comics.length} Comics...</p>
+        comics && comics.length? 
+           _showList(comics)
           :null
       }
       {
-        series && series.length>0? 
-          <p>Currently you have {series.length} Series...</p>
+        series && series.length? 
+           _showList(series)
           :null
+      }
+      {
+        (!series && !comics && !characters)? _showList(favorites) : null
       }
     </div>
   );

@@ -15,6 +15,7 @@ import marvelAPI from "../../external/marvelAPI"
 import { CharacterContext } from "../../context/CharacterContext"
 import { ComicContext } from "../../context/ComicContext"
 import { SerieContext } from "../../context/SerieContext"
+import { FavoriteContext } from "../../context/FavoriteContext"
 
 const SearchBar = () =>{
   const classes = useStyles();
@@ -24,6 +25,7 @@ const SearchBar = () =>{
   const character = useContext(CharacterContext);
   const comic = useContext(ComicContext);
   const serie = useContext(SerieContext);
+  const favorite = useContext(FavoriteContext);
   
 /*
   useEffect(()=>{
@@ -38,6 +40,7 @@ const SearchBar = () =>{
 
 const catalogChange = (event) => {
   setOption(event.target.value);
+
 };
 
 const searchItem = async() =>{
@@ -93,6 +96,7 @@ const searchItem = async() =>{
                   <FormControlLabel labelPlacement="top" value="character" control={<Radio />} label="Characters" />
                   <FormControlLabel labelPlacement="top" value="comics" control={<Radio />} label="Comics" />
                   <FormControlLabel labelPlacement="top" value="series" control={<Radio />} label="Series" />
+                  <FormControlLabel labelPlacement="top" value="favorites" control={<Radio />} label="Favorites" />
                 </RadioGroup>
               </FormControl>
         </Toolbar>
